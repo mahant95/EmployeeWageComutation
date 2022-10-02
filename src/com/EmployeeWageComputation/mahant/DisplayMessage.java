@@ -3,44 +3,52 @@ import java.util.*;
 
 public class DisplayMessage {
 	
-	public static void main(String[] args) {
+	public static final int IS_PART_TIME = 1;
+	public static final int IS_FULL_TIME = 2;
 
-		System.out.println("Welcome to Employee Wage Computation Program");
+	public static int computeEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
 
-		Random random = new Random();
+		int empHrs = 0;
+		int totalEmpHrs = 0;
+		int totalWorkingDays = 0;
 
-		int fullDayHours = 8;
-		int wagePerHours = 20;
-		int halfdayHours = 4;
-		int monthlySalary = 0;
-		int workingDaysPerMonth = 20;
-		int salary = 0;
-		int day = 0;
-		int monthlyHours = 0;
+		while (totalEmpHrs <= maxHoursPerMonth && totalWorkingDays < numOfWorkingDays) {
+			totalWorkingDays++;
+			int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+			switch (empCheck) {
 
-		while (day != 20 && monthlyHours != 100)// condition till working hours reaches for month
-		{
-			day++;
-
-			int randomNumber = random.nextInt(3); // will give 0 ,1 and 2 random number
-
-			switch (randomNumber) {
-			case 0:
-				System.out.println("EMPLOYEE IS ABSENT"); // random number will be o then employee is absent
-				break;
 			case 1:
-				salary = fullDayHours * wagePerHours; // if employee is present than his salary will be
-				monthlyHours = monthlyHours + fullDayHours;
+				IS_PART_TIME: empHrs = 4;
 				break;
+
 			case 2:
-				salary = wagePerHours * halfdayHours; // condition for half day
-				monthlyHours = monthlyHours + halfdayHours;
+				IS_FULL_TIME: empHrs = 8;
+				break;
+			default:
+				empHrs = 0;
+
 			}
-			monthlySalary = monthlySalary + salary;
-			System.out.println("Day " + day + " employee salaray is : " + salary);
+
+			totalEmpHrs += empHrs;
+			System.out.println("Day: " + totalWorkingDays + " Emp Hr: " + empHrs);
 
 		}
 
-		System.out.println("Monthly Salary: " + monthlySalary);
+		int totalEmpWage = totalEmpHrs * empRatePerHour;
+		System.out.println("Total Emp Wage for Company: " + company + " is: " + totalEmpWage);
+		return totalEmpWage;
+	}
+
+	public static void main(String[] args) {
+		System.out.println("Welcome to Employee Wage Computation Program for multiple companies");
+
+		computeEmpWage("WIPRO", 8, 8, 30);
+
+		computeEmpWage("BRIDGLABZ", 12, 8, 40);
+
+		computeEmpWage("TCS", 18, 50, 30);
+
+		computeEmpWage("TATA", 12, 30, 10);
+
 	}
 }
