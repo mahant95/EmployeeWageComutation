@@ -3,52 +3,41 @@ import java.util.*;
 
 public class DisplayMessage {
 	
-	public static final int IS_PART_TIME = 1;
-	public static final int IS_FULL_TIME = 2;
+	int wagePerHour = 20;
+	int fullTimeHour = 8;
+	int partTimeHour = 4;
+	int workingDayPerMonth = 20;
+	int totalWorkingHour = 100;
+	int totalEmpHour = 0;
+	int totalWorkingDays = 0;
 
-	public static int computeEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
-
-		int empHrs = 0;
-		int totalEmpHrs = 0;
-		int totalWorkingDays = 0;
-
-		while (totalEmpHrs <= maxHoursPerMonth && totalWorkingDays < numOfWorkingDays) {
+	public void computeEmpWage() {
+		while (totalEmpHour < totalWorkingHour && totalWorkingDays < workingDayPerMonth) {
 			totalWorkingDays++;
-			int empCheck = (int) Math.floor(Math.random() * 10) % 3;
-			switch (empCheck) {
-
+			int isPresent = (int) Math.floor(Math.random() * 10) % 3;
+			switch (isPresent) {
+			case 0:
+				System.out.println("Employee is present");
+				totalEmpHour += fullTimeHour;
+				break;
 			case 1:
-				IS_PART_TIME: empHrs = 4;
+				System.out.println("Employee is present as a part time");
+				totalEmpHour += partTimeHour;
 				break;
-
 			case 2:
-				IS_FULL_TIME: empHrs = 8;
+				System.out.println("Employee is absent");
+				totalEmpHour += 0;
 				break;
-			default:
-				empHrs = 0;
-
 			}
-
-			totalEmpHrs += empHrs;
-			System.out.println("Day: " + totalWorkingDays + " Emp Hr: " + empHrs);
-
 		}
-
-		int totalEmpWage = totalEmpHrs * empRatePerHour;
-		System.out.println("Total Emp Wage for Company: " + company + " is: " + totalEmpWage);
-		return totalEmpWage;
+		System.out.println("Monthly Wage : " + totalEmpHour * wagePerHour);
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Welcome to Employee Wage Computation Program for multiple companies");
+		System.out.println("Welcome to Employee Wage Computation program");
 
-		computeEmpWage("WIPRO", 8, 8, 30);
+		DisplayMessage displayMessage = new DisplayMessage();
 
-		computeEmpWage("BRIDGLABZ", 12, 8, 40);
-
-		computeEmpWage("TCS", 18, 50, 30);
-
-		computeEmpWage("TATA", 12, 30, 10);
-
+		displayMessage.computeEmpWage();
 	}
 }
