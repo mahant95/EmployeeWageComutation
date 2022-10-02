@@ -3,44 +3,41 @@ import java.util.*;
 
 public class DisplayMessage {
 	
-	public static void main(String[] args) {
+	int wagePerHour = 20;
+	int fullTimeHour = 8;
+	int partTimeHour = 4;
+	int workingDayPerMonth = 20;
+	int totalWorkingHour = 100;
+	int totalEmpHour = 0;
+	int totalWorkingDays = 0;
 
-		System.out.println("Welcome to Employee Wage Computation Program");
-
-		Random random = new Random();
-
-		int fullDayHours = 8;
-		int wagePerHours = 20;
-		int halfdayHours = 4;
-		int monthlySalary = 0;
-		int workingDaysPerMonth = 20;
-		int salary = 0;
-		int day = 0;
-		int monthlyHours = 0;
-
-		while (day != 20 && monthlyHours != 100)// condition till working hours reaches for month
-		{
-			day++;
-
-			int randomNumber = random.nextInt(3); // will give 0 ,1 and 2 random number
-
-			switch (randomNumber) {
+	public void computeEmpWage() {
+		while (totalEmpHour < totalWorkingHour && totalWorkingDays < workingDayPerMonth) {
+			totalWorkingDays++;
+			int isPresent = (int) Math.floor(Math.random() * 10) % 3;
+			switch (isPresent) {
 			case 0:
-				System.out.println("EMPLOYEE IS ABSENT"); // random number will be o then employee is absent
+				System.out.println("Employee is present");
+				totalEmpHour += fullTimeHour;
 				break;
 			case 1:
-				salary = fullDayHours * wagePerHours; // if employee is present than his salary will be
-				monthlyHours = monthlyHours + fullDayHours;
+				System.out.println("Employee is present as a part time");
+				totalEmpHour += partTimeHour;
 				break;
 			case 2:
-				salary = wagePerHours * halfdayHours; // condition for half day
-				monthlyHours = monthlyHours + halfdayHours;
+				System.out.println("Employee is absent");
+				totalEmpHour += 0;
+				break;
 			}
-			monthlySalary = monthlySalary + salary;
-			System.out.println("Day " + day + " employee salaray is : " + salary);
-
 		}
+		System.out.println("Monthly Wage : " + totalEmpHour * wagePerHour);
+	}
 
-		System.out.println("Monthly Salary: " + monthlySalary);
+	public static void main(String[] args) {
+		System.out.println("Welcome to Employee Wage Computation program");
+
+		DisplayMessage displayMessage = new DisplayMessage();
+
+		displayMessage.computeEmpWage();
 	}
 }
