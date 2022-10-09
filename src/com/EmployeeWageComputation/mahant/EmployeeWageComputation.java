@@ -1,6 +1,6 @@
 package com.EmployeeWageComputation.mahant;
 
-public class DisplayMessage {
+public class EmployeeWageComputation {
 	public static void calculateTotalWage(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs)
     {
         final int PART_TIME = 1;
