@@ -1,7 +1,7 @@
 package com.EmployeeWageComputation.mahant;
-
-public class DisplayMessage {
-	 // class constants
+public class EmployeeWageComputation
+{
+    // class constants
     static final int PART_TIME = 1;
     static final int FULL_TIME = 2;
     // instance constants
@@ -12,7 +12,7 @@ public class DisplayMessage {
     // instance variable
     int totalWage;
 
-    DisplayMessage(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs)
+    EmployeeWageComputation(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs)
     {
         COMPANY_NAME = companyName;
         WAGE_PER_HR = wagePerHr;
@@ -69,8 +69,8 @@ public class DisplayMessage {
 
     public static void main(String args[])
     {
-    	DisplayMessage google = new DisplayMessage("Google", 8, 20, 100);
-    	DisplayMessage microsoft = new DisplayMessage("Microsoft", 4, 30, 150);
+        EmployeeWageComputation google = new EmployeeWageComputation("Google", 8, 20, 100);
+        EmployeeWageComputation microsoft = new EmployeeWageComputation("Microsoft", 4, 30, 150);
 
         google.calculateTotalWage();
         System.out.println(google);
