@@ -1,43 +1,44 @@
 package com.EmployeeWageComputation.mahant;
-import java.util.*;
 
 public class DisplayMessage {
-	
-	int wagePerHour = 20;
-	int fullTimeHour = 8;
-	int partTimeHour = 4;
-	int workingDayPerMonth = 20;
-	int totalWorkingHour = 100;
-	int totalEmpHour = 0;
-	int totalWorkingDays = 0;
+	 public static void calculateTotalWage()
+    {
+        final int PART_TIME = 1;
+        final int FULL_TIME = 2;
+        final int WAGE_PER_HR = 20;
+        final int MAX_WORKING_DAYS = 20;
+        final int MAX_WORKING_HRS = 100;
 
-	public void computeEmpWage() {
-		while (totalEmpHour < totalWorkingHour && totalWorkingDays < workingDayPerMonth) {
-			totalWorkingDays++;
-			int isPresent = (int) Math.floor(Math.random() * 10) % 3;
-			switch (isPresent) {
-			case 0:
-				System.out.println("Employee is present");
-				totalEmpHour += fullTimeHour;
-				break;
-			case 1:
-				System.out.println("Employee is present as a part time");
-				totalEmpHour += partTimeHour;
-				break;
-			case 2:
-				System.out.println("Employee is absent");
-				totalEmpHour += 0;
-				break;
-			}
-		}
-		System.out.println("Monthly Wage : " + totalEmpHour * wagePerHour);
-	}
+        int totalWage = 0;
+        int workingHrs = 0;
+        System.out.printf("%5s     %5s     %5s     %5s\n", "Day", "Workinghrs", "Wage", "Total working hrs");
+        for (int day = 1, totalWorkingHrs = 0; day <= MAX_WORKING_DAYS
+                && totalWorkingHrs < MAX_WORKING_HRS; day++, totalWorkingHrs += workingHrs)
+        {
 
-	public static void main(String[] args) {
-		System.out.println("Welcome to Employee Wage Computation program");
+            int empType = (int) (Math.random() * 100) % 3;
+            switch (empType)
+            {
+            case FULL_TIME:
+                workingHrs = 8;
+                break;
+            case PART_TIME:
+                workingHrs = 4;
+                break;
+            default:
+                workingHrs = 0;
+                break;
+            }
+            int wage = workingHrs * WAGE_PER_HR;
+            totalWage += wage;
+            System.out.printf("%5d       %5d      %5d      %5d\n", day, workingHrs, wage, totalWorkingHrs + workingHrs);
 
-		DisplayMessage displayMessage = new DisplayMessage();
+        }
+        System.out.println("Total wage for a month is " + totalWage);
+    }
 
-		displayMessage.computeEmpWage();
-	}
+    public static void main(String args[])
+    {
+        calculateTotalWage();
+    }
 }
