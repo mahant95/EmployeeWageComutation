@@ -1,26 +1,21 @@
 package com.EmployeeWageComputation.mahant;
-import java.util.*;
-
-public class DisplayMessage {
-	
-	public static void main(String[] args) {
-
-		int fullDayHours = 8;
-		int wagePerHours = 20;
-		int salary = 0;
-
-		System.out.println("Welcome to Employee Wage Computation Program");
-
-		Random random = new Random();
-
-		int randomNumber = random.nextInt(2); // will give 0 or 1 random number
-
-		if (randomNumber == 1) { // condition for present or absent
-			System.out.println("EMPLOYEE IS PRESENT");
-			salary = fullDayHours * wagePerHours; // if employee is present than his salary will be
-		} else
-			System.out.println("EMPLOYEE IS ABSENT");
-		System.out.println("Total salary of employee is : " + salary);
-
-	}
+public class EmployeeWageComputation
+{
+    public static void main(String args[])
+    {
+        final int FULL_TIME = 1;
+        final int WAGE_PER_HR = 20;
+        int empType = (int) (Math.random() * 100) % 2;
+        int workingHours = 0;
+        if (empType == FULL_TIME)
+        {
+            System.out.println("Employee is Present");
+            workingHours = 8;
+        } else
+        {
+            System.out.println("Employee is Absent");
+        }
+        int wage = workingHours * WAGE_PER_HR;
+        System.out.println("Employee Daily Wage is " + wage);
+    }
 }
