@@ -1,4 +1,11 @@
 package com.EmployeeWageComputation.mahant;
+interface IEmployeeWageComputation
+{
+    public void addCompany(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs);
+
+    public void calculateTotalWage();
+}
+
 class CompanyEmpWage
 {
     // instance constants
@@ -23,6 +30,7 @@ class CompanyEmpWage
         this.totalEmpWage = totalEmpWage;
     }
 
+    @Override
     public String toString()
     {
         System.out.println("Details of " + COMPANY_NAME + " employee");
@@ -34,7 +42,7 @@ class CompanyEmpWage
     }
 }
 
-public class EmployeeWageComputation
+class EmployeeWageComputation implements IEmployeeWageComputation
 {
     // class constants
     public static final int PART_TIME = 1;
@@ -50,7 +58,7 @@ public class EmployeeWageComputation
         index = 0;
     }
 
-    void addCompany(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs)
+    public void addCompany(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs)
     {
         companies[index++] = new CompanyEmpWage(companyName, wagePerHr, maxWorkingDays, maxWorkingHrs);
     }
@@ -64,16 +72,16 @@ public class EmployeeWageComputation
     {
         switch (empType)
         {
-        case FULL_TIME:
-            return 8;
-        case PART_TIME:
-            return 4;
-        default:
-            return 0;
+            case FULL_TIME:
+                return 8;
+            case PART_TIME:
+                return 4;
+            default:
+                return 0;
         }
     }
 
-    void calculateTotalWage()
+    public void calculateTotalWage()
     {
         for (CompanyEmpWage company : companies)
         {
